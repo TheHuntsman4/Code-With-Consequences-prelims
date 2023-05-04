@@ -18,15 +18,16 @@ function getPokemon(e) {
       document.querySelector(".pokemonBox").innerHTML = `
       <div>
         <img
-          src="${data.sprites.other["official-artwork"].front_default}"
+          src="${data.sprites.front_default}"
           alt="Pokemon name"
         />
       </div>
       <div class="pokemonInfos">
         <h1>${capitalizeFirstLetter(data.name)}</h3>
-        <p>Weight: ${data.weight}</p>
         <p>Primary Typing: ${data.types[0].type.name}</p>
-        ${data.types[1]? `<p> Secondary Typing${data.types[1].type.name}</p>`:``}
+        ${data.types[1]? `<p> Secondary Typing: ${data.types[1].type.name}</p>`:``}
+        <p>${data.abilities[0].ability.name}</p>
+        ${data.abilities[1]? `<p>${data.abilities[0].ability.name}</p>`:``}
       </div>`;
     })
     .catch((err) => {

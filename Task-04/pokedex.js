@@ -10,30 +10,6 @@ window.addEventListener("load", getPokeData(1, 151));
 
 
 
-async function getPokemon(num) {
-    let url = "https://pokeapi.co/api/v2/pokemon/" + num.toString();
-
-    let res = await fetch(url);
-    let pokemon = await res.json();
-    // console.log(pokemon);
-
-    let pokemonName = pokemon["name"];
-    let pokemonType = pokemon["types"];
-    let pokemonImg = pokemon["sprites"]["front_default"];
-
-    res = await fetch(pokemon["species"]["url"]);
-    let pokemonDesc = await res.json();
-
-    // console.log(pokemonDesc);
-    pokemonDesc = pokemonDesc["flavor_text_entries"][9]["flavor_text"];
-
-    pokedex[num] = {"name" : pokemonName, "img" : pokemonImg, "types" : pokemonType, "desc" : pokemonDesc};
-
-}
-
-
-
-
 function getPokeData(firstPoke, lastPoke) {
 	//must wait a bit before fetching the data for the gen selector animation to work properly
 	setTimeout(() => {
@@ -56,6 +32,7 @@ function getPokeData(firstPoke, lastPoke) {
 			pokemonList.innerHTML = "";
 			// if we have fetched all the Pokemon data, generate the cards in the correct order
 			pokemonData.forEach((data) => {
+				console.log(data);
 				generateCard(data, lastPoke);
 				betterPokemonCards(pokemonData);	
 				
